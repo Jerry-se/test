@@ -101,3 +101,28 @@ dbtu@dbtu:~/code/test$ commitizen init cz-conventional-changelog --save-dev --sa
 - [阮一峰老师的 Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
 - [同类型的简易提交规范 gitlint](https://github.com/jorisroovers/gitlint)
 - [vscode git-commit-plugin](https://marketplace.visualstudio.com/items?itemName=redjue.git-commit-plugin)
+
+如果就习惯了 `git commit -m` 命令，不想自动化提示，这个时候就可以使用 [commitlint](https://github.com/conventional-changelog/commitlint) ，在提交后会自动校验输入的 commit message 是否符合规范。
+
+不用 nodejs 环境的还有 Python 实现的 gitlint 和 precommit。
+
+## change log
+
+```shell
+dbtu@dbtu:~/code/test$ npm install --save-dev conventional-changelog conventional-changelog-cli
++ conventional-changelog@3.1.25
+added 129 packages from 110 contributors in 12.835s
+
+34 packages are looking for funding
+  run `npm fund` for details
+
+dbtu@dbtu:~/code/test$ 
+# 生成 CHANGELOG.md
+dbtu@dbtu:~/code/test$ npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0
+# 不覆盖以前的 Change log，只会在CHANGELOG.md的头部加上自从上次发布以来的变动。
+dbtu@dbtu:~/code/test$ npx conventional-changelog -p angular -i CHANGELOG.md -w
+```
+
+## Jenkins
+
+打包部署
